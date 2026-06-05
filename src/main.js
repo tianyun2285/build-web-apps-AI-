@@ -48,7 +48,7 @@ function createCard(club) {
   card.style.setProperty("--club-a", club.a);
   card.style.setProperty("--club-b", club.b);
   card.style.setProperty("--club-glow", `${club.a}99`);
-  card.setAttribute("aria-label", `翻开${club.name}`);
+  card.setAttribute("aria-label", `翻开${club.name}队徽卡`);
 
   card.innerHTML = `
     <span class="card-inner">
@@ -72,7 +72,7 @@ function renderBoard() {
 function showCombo() {
   if (state.combo < 2) return;
   const pop = $("comboPop");
-  pop.textContent = `COMBO x${state.combo}`;
+  pop.textContent = `连击 x${state.combo}`;
   pop.classList.remove("show");
   void pop.offsetWidth;
   pop.classList.add("show");
@@ -154,11 +154,11 @@ function finishGame(won) {
   clearInterval(state.timerId);
   setBestScore(state.score);
 
-  $("resultKicker").textContent = won ? "CHAMPIONS" : "FULL TIME";
+  $("resultKicker").textContent = won ? "冠军时刻" : "全场结束";
   $("resultTitle").textContent = won ? "冠军到手" : "时间到";
   $("resultText").textContent = won
-    ? `最终得分 ${state.score}，球场记忆力拉满。`
-    : `最终得分 ${state.score}，换个阵型再冲一次。`;
+    ? `最终得分 ${state.score}，这场绿茵记忆赛完美收官。`
+    : `最终得分 ${state.score}，调整阵型后再冲一次。`;
   $("resultPanel").hidden = false;
   renderHud();
 }

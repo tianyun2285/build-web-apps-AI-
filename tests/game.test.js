@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import { readFileSync } from "node:fs";
 
 import {
   CLUBS,
@@ -10,6 +11,32 @@ import {
   resolvePair,
   shuffle
 } from "../src/game.js";
+
+const textFiles = {
+  "index.html": readFileSync("index.html", "utf8"),
+  "src/main.js": readFileSync("src/main.js", "utf8"),
+  "src/game.js": readFileSync("src/game.js", "utf8")
+};
+
+const mojibakePattern = new RegExp(
+  [
+    String.fromCharCode(0xfffd),
+    String.fromCharCode(0x00c3),
+    String.fromCharCode(0x00c2),
+    "\\\\u" + "FFFD"
+  ].join("|"),
+  "u"
+);
+
+for (const [file, source] of Object.entries(textFiles)) {
+  assert.doesNotMatch(source, mojibakePattern, `${file} should not contain mojibake`);
+}
+
+assert.match(textFiles["index.html"], /绿茵记忆赛/, "index keeps the Chinese match-day subtitle");
+assert.match(textFiles["index.html"], /再踢一场/, "result panel keeps the play-again label");
+assert.match(textFiles["src/main.js"], /连击 x\$\{state\.combo\}/, "combo popup uses Chinese copy");
+assert.match(textFiles["src/main.js"], /冠军时刻/, "win panel uses Chinese football copy");
+assert.match(textFiles["src/game.js"], /海港竞技/, "club names remain readable Chinese");
 
 const deck = duplicateClubs(CLUBS);
 
