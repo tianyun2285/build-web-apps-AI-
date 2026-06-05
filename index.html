@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>足球俱乐部连连看</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="game-shell">
+      <section class="scoreboard" aria-label="比赛信息">
+        <div class="brand">
+          <span class="brand-mark" aria-hidden="true">FC</span>
+          <div>
+            <h1>足球俱乐部连连看</h1>
+            <p>Match Day Memory</p>
+          </div>
+        </div>
+
+        <div class="hud">
+          <div class="hud-item">
+            <span>得分</span>
+            <strong id="score">0</strong>
+          </div>
+          <div class="hud-item timer">
+            <span>倒计时</span>
+            <strong id="time">90</strong>
+          </div>
+          <div class="hud-item">
+            <span>剩余</span>
+            <strong id="remaining">8</strong>
+          </div>
+          <div class="hud-item">
+            <span>最佳</span>
+            <strong id="best">0</strong>
+          </div>
+        </div>
+
+        <button class="kickoff" id="restart" type="button">
+          <span aria-hidden="true">↻</span>
+          重新开赛
+        </button>
+      </section>
+
+      <section class="stadium">
+        <div class="lights left" aria-hidden="true"></div>
+        <div class="lights right" aria-hidden="true"></div>
+        <div class="pitch-lines" aria-hidden="true"></div>
+        <div class="ball-trail" aria-hidden="true"></div>
+        <div class="combo-pop" id="comboPop" aria-live="polite"></div>
+
+        <div class="board" id="board" aria-label="俱乐部卡片棋盘"></div>
+
+        <div class="result-panel" id="resultPanel" hidden>
+          <p id="resultKicker">FULL TIME</p>
+          <h2 id="resultTitle">完赛</h2>
+          <span id="resultText">本场表现不错。</span>
+          <button class="kickoff" id="playAgain" type="button">再踢一场</button>
+        </div>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
