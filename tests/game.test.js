@@ -1,14 +1,15 @@
-const assert = require("node:assert/strict");
-const {
+import assert from "node:assert/strict";
+
+import {
   CLUBS,
-  duplicateClubs,
-  shuffle,
-  calculateMatchScore,
-  resolvePair,
-  POINTS_PER_MATCH,
   COMBO_BONUS,
-  MISMATCH_PENALTY
-} = require("../script.js");
+  MISMATCH_PENALTY,
+  POINTS_PER_MATCH,
+  calculateMatchScore,
+  duplicateClubs,
+  resolvePair,
+  shuffle
+} from "../src/game.js";
 
 const deck = duplicateClubs(CLUBS);
 

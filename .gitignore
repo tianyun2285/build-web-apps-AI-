@@ -2,6 +2,7 @@
 node_modules/
 
 # Local generated artifacts
+dist/
 output/
 downloads/
 
